@@ -1,0 +1,2 @@
+*.glb filter=lfs diff=lfs merge=lfs -text
+public/glbModels/home/building.glb filter=lfs diff=lfs merge=lfs -text

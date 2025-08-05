@@ -1,0 +1,251 @@
+@use "sass:map";
+@use "sass:list";
+
+// $ MAIL COLORS
+
+$transition: (
+  properties: (
+    color,
+    background-color,
+    border-color,
+    fill,
+    stroke,
+  ),
+  duration: 0.5s,
+  timing-function: ease-in-out,
+);
+
+/// Mixin réutilisable
+/// @param $cfg  : map(properties, duration, timing-function)
+/// Usage: @include transition($transition);
+@mixin transition($cfg) {
+  transition-property: list.join(map.get($cfg, properties), ", ");
+  transition-duration: map.get($cfg, duration);
+  transition-timing-function: map.get($cfg, timing-function);
+}
+
+$Gotham:
+  Gotham,
+  Gotham Fallback;
+$Optimal:
+  Optimal,
+  Optimal Fallback;
+
+$breakpoints: (
+  "xs": 320px,
+  // très petits téléphones
+  "sm": 480px,
+  // téléphones standards (iPhone SE, Android petit format)
+  "md": 768px,
+  // tablettes (iPad mini, Kindle)
+  "lg": 1024px,
+  // tablettes horizontales / petits laptops
+  "xl": 1280px,
+  // laptops standards
+  "2xl": 1440px,
+  // écrans larges (MacBook Pro 16", etc.)
+  "3xl": 1600px,
+  // très grands écrans
+  "4xl": 1920px,
+  // full HD / moniteurs larges
+  "5xl": 2560px, // ultra HD / écrans Retina 27"+ ou 4K
+);
+
+// Breakpoints spécifiques pour l'orientation des tablettes
+$tablet-breakpoints: (
+  "tablet-portrait": 1024px,
+  // iPad Pro en mode portrait (vertical) - 1024px
+  "tablet-landscape": 1366px, // iPad Pro en mode landscape (horizontal) - 1366px
+);
+
+// Résolutions spécifiques avec ratios fixes
+$specific-resolutions: (
+  "1200x600": (
+    width: 1200px,
+    height: 600px,
+  ),
+  "1440x800": (
+    width: 1440px,
+    height: 800px,
+  ),
+  "1600x800": (
+    width: 1600px,
+    height: 800px,
+  ),
+);
+
+// Mixin pour les résolutions spécifiques avec une marge de tolérance
+@mixin specific-resolution($resolution) {
+  @if map.has-key($specific-resolutions, $resolution) {
+    $res: map.get($specific-resolutions, $resolution);
+    @media (min-width: (map.get($res, width) - 100px)) and (max-width: (map.get($res, width) + 100px)) and (min-height: (map.get($res, height) - 50px)) and (max-height: (map.get($res, height) + 50px)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ La résolution #{$resolution} n'existe pas dans \$specific-resolutions.";
+  }
+}
+
+// Mixin pour détecter les tablettes en mode portrait (vertical)
+@mixin tablet-portrait {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+// Mixin pour détecter les tablettes en mode landscape (horizontal)
+@mixin tablet-landscape {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+// Mixin pour toutes les tablettes (peu importe l'orientation)
+@mixin tablet {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+// Mixin pour détecter l'orientation portrait sur tous les appareils
+@mixin portrait {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
+// Mixin pour détecter l'orientation landscape sur tous les appareils
+@mixin landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+// Mixin spécifique pour iPad Pro en portrait
+@mixin ipad-pro-portrait {
+  @media (width: 1024px) and (height: 1366px) {
+    @content;
+  }
+}
+
+// Mixin spécifique pour iPad Pro en landscape
+@mixin ipad-pro-landscape {
+  @media (width: 1366px) and (height: 1024px) {
+    @content;
+  }
+}
+
+@mixin respond($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Le breakpoint #{$breakpoint} n'existe pas dans \$breakpoints.";
+  }
+}
+
+// Mixins communs pour les styles réutilisables
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin optimal-text($size: 42px, $weight: 400) {
+  font-family: $Optimal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+@mixin gotham-text($size: 16px, $weight: 325) {
+  font-family: $Gotham;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: 140%;
+  letter-spacing: 0;
+}
+
+@mixin gradient-overlay(
+  $opacity-start: 0.2,
+  $opacity-mid1: 0.308565,
+  $opacity-mid2: 0.638306,
+  $opacity-end: 1
+) {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 39, 40, $opacity-start) 0%,
+    rgba(0, 39, 40, $opacity-mid1) 30.86%,
+    rgba(0, 39, 40, $opacity-mid2) 63.83%,
+    rgba(0, 39, 40, $opacity-end) 100%
+  );
+}
+
+@mixin carousel-button {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: $darkGreen;
+  border: none;
+  cursor: pointer;
+  @include flex-center;
+  z-index: 10;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Variables pour les espacements communs
+$spacing: (
+  "xs": 5px,
+  "sm": 10px,
+  "md": 20px,
+  "lg": 40px,
+  "xl": 80px,
+);
+
+// Mixin pour les paddings responsives
+@mixin responsive-padding($size: "md") {
+  $value: map.get($spacing, $size);
+  padding: $value;
+
+  @include respond("md") {
+    padding: map.get($spacing, "sm");
+  }
+
+  @include respond("sm") {
+    padding: map.get($spacing, "xs");
+  }
+}
