@@ -5,10 +5,16 @@ Ce projet est un portfolio interactif en 3D développé avec Next.js, TypeScript
 ## 🚀 Fonctionnalités principales
 - **Page d'accueil immersive** avec scroll et section Hero 3D
 - **Affichage de projets** dynamiques récupérés via Strapi (GraphQL)
-- **Intégration de modèles 3D** (.glb) pour chaque projet
+- **Intégration de modèles 3D** (.gltf + texture) pour chaque projet
 - **Animations fluides** (GSAP, Lenis)
-- **Navigation détaillée** par projet
-- **Responsive design** et expérience utilisateur moderne
+- **Responsive design** avec Adaptation des Contrôle du site (navbar button ---> swipe controls)
+
+## Optimisation et performence
+- **Optimisation du nombre de Polygones chargé** (clone du modèle)
+- **Séparation du Modèle et des texture** (GLB ---> GLTF + Textures)
+- **Chargement des modèles, aniamtions et textures au loader** pour évité tout problème de Performance pendant les transitions
+- **Gestion des reflets et de la lumière** Optimiser entre réalisme et performances
+- **Gestion Personnalisé du fov et du positionnement de la camera** pour un rendu plus réaliste et élégent
 
 ## 🛠️ Technologies utilisées
 - **Next.js 15** (App Router)
@@ -48,18 +54,5 @@ Ce projet est un portfolio interactif en 3D développé avec Next.js, TypeScript
    ```
 
 ## 🌐 Déploiement
-Le projet est prêt pour un déploiement sur Vercel ou toute plateforme compatible Next.js.
 
-## 🤝 Contribution
-Les contributions sont les bienvenues !
-- Forkez le repo
-- Créez une branche (`git checkout -b feature/ma-feature`)
-- Commitez vos modifications
-- Ouvrez une Pull Request
-
-## 📄 Licence
-MIT
-
----
-
-**Contact** : contact@les-mauvaises.fr
+Quelque problème ont été rencontrés lors du déploiement Vercel, des changement ont été fait pour régler les problème et des mesures de gestion d'erreur ont du être mis en place (voir DEPLOYEMENT_ISSUE.md)
