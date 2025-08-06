@@ -1,34 +1,34 @@
 // Mapping textures et projets
 export const TEXTURE_TO_PROJECT_MAPPING = {
-  '/textures/arte.png': 'arte',
-  '/textures/floa.png': 'floa',
-  '/textures/diurne.png': 'galerie-diurne',
-  '/textures/les_mauvaises.png': 'les-mauvaises',
-  '/textures/sharp_and_cheesy.png': 'sharp-and-chessy',
-  '/textures/soap_nova.png': 'soapnova',
-  '/textures/vdk.png': 'vondekay'
+  '/textures/arte.jpg': 'arte',
+  '/textures/floa.jpg': 'floa',
+  '/textures/diurne.jpg': 'galerie-diurne',
+  '/textures/les_mauvaises.jpg': 'les-mauvaises',
+  '/textures/sharp_and_cheesy.jpg': 'sharp-and-chessy',
+  '/textures/soap_nova.jpg': 'soapnova',
+  '/textures/vdk.jpg': 'vondekay'
 };
 
 // Ordre des textures dans can
 export const TEXTURE_ORDER = [
-  '/textures/arte.png',
-  '/textures/floa.png',
-  '/textures/diurne.png',
-  '/textures/les_mauvaises.png',
-  '/textures/sharp_and_cheesy.png',
-  '/textures/soap_nova.png',
-  '/textures/vdk.png'
+  '/textures/arte.jpg',
+  '/textures/floa.jpg',
+  '/textures/diurne.jpg',
+  '/textures/les_mauvaises.jpg',
+  '/textures/sharp_and_cheesy.jpg',
+  '/textures/soap_nova.jpg',
+  '/textures/vdk.jpg'
 ];
 
 // Mapping des images de background
 export const BACKGROUND_IMAGES = [
-  '/backgrounds/ArteBG.png',
-  '/backgrounds/FloaBG.png',
-  '/backgrounds/GalerieBG.png',
-  '/backgrounds/LesMauvaiseBG.png',
-  '/backgrounds/SharpAndCheesyBG.png',
-  '/backgrounds/SoapNovaBG.png',
-  '/backgrounds/VDKBG.png'
+  '/backgrounds/ArteBG.jpg',
+  '/backgrounds/FloaBG.jpg',
+  '/backgrounds/GalerieBG.jpg',
+  '/backgrounds/LesMauvaiseBG.jpg',
+  '/backgrounds/SharpAndCheesyBG.jpg',
+  '/backgrounds/SoapNovaBG.jpg',
+  '/backgrounds/VDKBG.jpg'
 ];
 
 // Obtntion du slug

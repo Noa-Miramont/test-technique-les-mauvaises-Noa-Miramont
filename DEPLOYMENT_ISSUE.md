@@ -57,9 +57,6 @@ npm run check-deployment
 1. `src/hooks/useBackgroundImage.ts` - Ajout de la gestion d'erreur robuste
 2. `src/components/Homepage.tsx` - Ajout du fallback visuel avec Set d'erreurs
 3. `vercel.json` - Configuration du déploiement
-4. `scripts/check-deployment.js` - Script de vérification production
-5. `scripts/test-local-images.js` - Script de vérification locale
-6. `scripts/test-fallback.js` - Script de test du fallback
 
 ## Résultat attendu
 
